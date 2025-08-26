@@ -2,7 +2,10 @@
 
 Repositório com todos os algoritmos desenvolvidos durante a disciplina de Métodos Numéricos Computacionais
 
-### Raizes de Função
+## Tabela de Conteúdos:
+  * [Raízes de Função](###Raízes de Função)
+
+### Raízes de Função
 1 - Teorema de Bolzano 
 
 2 - Metodo da Bissecao 
