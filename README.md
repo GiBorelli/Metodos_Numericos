@@ -16,4 +16,18 @@ Repositório com todos os algoritmos desenvolvidos durante a disciplina de Méto
 5 - Metodo das Secantes
 
 
+### [Soluções de Sistemas Lineares](Solucoes_Sistemas_Lineares)
+1 - Solução de Retro-Substituição de uma Matriz Triangular
+
+2 - Eliminação de Gauss (ou Método de Escalonamento)*
+
+3 - Fatoração LU (ou Decomposição LU)*
+
+4 - **
+
+
+*Métodos Diretos
+
+**Métodos Iterativos
+
 ### ...
