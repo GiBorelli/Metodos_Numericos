@@ -35,7 +35,7 @@ void controleBissecao(){
     double (*funcao) (double x) = XquadradoMenosDois;
 
     if(teoremaDeBolzano(funcao, a, b) == 1){
-        printf("Existe zero no intervalo [%.4lf, %.4lf] da funcao.\n", a, b);
+        printf("Existe zero no intervalo [%.6lf, %.6lf] da funcao.\n", a, b);
         int n = quantMetodoBissecao(a, b, epsilon);
         printf("Sao necessarias %d interacoes para aproximar-se do zero (raiz) da funcao.\n", n);
         MetodoBissecao(funcao, a, b, epsilon, n);
