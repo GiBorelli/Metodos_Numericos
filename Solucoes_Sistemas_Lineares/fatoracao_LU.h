@@ -1,7 +1,9 @@
 #ifndef FATORACAO_LU_H
 #define FATORACAO_LU_H
 
-void fatoracaoLU(double **A, double *b, int n, double **L, double **U);
+//int quantMultiplicadores(int n);
+//void fatoracaoLU(double **A, int n, double **L, double **U);
+void fatoracaoLU(double **A, int n);
 void controleFatoracaoLU(double **A, int n);
 
 #endif

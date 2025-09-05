@@ -3,9 +3,9 @@
 #include "matriz.h"
 #include "resolucao.h"
 
-double *retroSubstituicao(int n, double **A, double *b, double xn){
+double *retroSubstituicao(int n, double **A, double *b){
     double *x = (double*) malloc(n * sizeof(double));
-    x[n-1] = xn;
+    x[n-1] = b[n-1]/A[n-1][n-1];
     for(int i = n-1; i >= 0; i--){
         double soma = 0;
         for(int j = i+1; j < n; j++){
@@ -20,9 +20,9 @@ void controleRetroSubstituicao(double **A, int n){
     double *b = (double *) malloc(n * sizeof(double));
     preenchimentoVetorSolucao(b, n);
 
-    double *x = algoritmo(n, A, b, b[n-1]/A[n-1][n-1]);
+    double *x = retroSubstituicao(n, A, b);
 
     printf("O vetor solucao X e: \nX = [");
-    impressaoVetorSolucao(b, n);
-
+    impressaoVetor(x, n);
+    free(b);
 }

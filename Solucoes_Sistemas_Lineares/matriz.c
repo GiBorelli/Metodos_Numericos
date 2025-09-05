@@ -19,6 +19,13 @@ double **alocacaoMatrizQuadrada(double **A, int n){
     return A;
 }
 
+void liberaMatrizQuadrada(double **A, int n){
+    for(int i = 0; i < n; i++){
+        free(A[i]);
+    }
+    free(A);
+}
+
 void preenchimentoMatriz(double **A, int n){
     printf("Digite os valores da matriz A: \n");
     for(int i = 0; i < n; i++){
@@ -47,9 +54,33 @@ void impressaoMatriz(double **M, int n){
     }
 }
 
-void impressaoVetorSolucao(double *b, int n){
+void impressaoVetor(double *v, int n){
     for(int i = 0; i < n-1; i++){
-        printf("%.2lf  ", b[i]);
+        printf("%.2lf  ", v[i]);
     }
-    printf("%.2lf]\n", b[n-1]);
+    printf("%.2lf]\n", v[n-1]);
 }
+
+void impressaoTriangularSuperior(double **U, int n){
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n-1; j++){
+            if(j < i) printf("0.00  ");
+            else printf("%.2lf  ", U[i][j]);
+        }
+        if(i != n-1) printf("%.2lf\n    ", U[i][n-1]);
+        else printf("%.2lf\n", U[i][n-1]);
+    }
+}
+
+void impressaoTriangularInferior(double **L, int n){
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            if(j > i) printf("0.00  ");
+            else if(j == i) printf("1.00  ");
+            else printf("%.2lf  ", L[i][j]);
+        }
+        if(i != n-1) printf("\n    ");
+        else printf("\n");
+    }
+}
+

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "matriz.h"
 #include "resolucao.h"
 #include "eliminacao_gauss.h"
@@ -26,10 +27,12 @@ void controleEliminacaoGauss(double **A, int n){
     impressaoMatriz(A, n);
 
     printf("O vetor resposta b escalonado e: \nb = [");
-    impressaoVetorSolucao(b, n);
+    impressaoVetor(b, n);
 
     int resolve;
     printf("Caso queira a solucao da matriz, digite 1. Se nao quiser, digite 0: ");
     scanf(" %d", &resolve);
-    if(resolve) controleResolucao(A, b, n);
+    if(resolve) retroSubstituicao(n, A, b);
+    
+    free(b);
 }
