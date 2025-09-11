@@ -68,9 +68,9 @@ void controleFatoracaoLU(double **A, int n){
     impressaoTriangularSuperior(A, n);
 
     int novoB;
-    printf("Caso queira inserir um vetor solucao b, digite 1. Se nao quiser, digite 0: ");
-    scanf(" %d", &novoB);
-    while(novoB != 0){
+    do{
+        printf("Caso queira inserir um vetor solucao b, digite 1. Se nao quiser, digite 0: ");
+        scanf(" %d", &novoB);
         if(novoB != 1) printf("Valor inválido. \n");
         else{
             double *b = (double *) malloc(n * sizeof(double));
@@ -82,7 +82,5 @@ void controleFatoracaoLU(double **A, int n){
             free(b);
             free(X);
         }
-        printf("Se quiser calcular a solucao para um novo vetor b, digite 1. Se nao quiser, digite 0: ");
-        scanf(" %d", &novoB);
-    } 
+    } while(novoB != 0);
 }

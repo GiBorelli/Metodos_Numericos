@@ -16,5 +16,6 @@ double tresXMenosCosXMaisUm(double x);
 double limnatXMenosSenX(double x);
 double doisXMenoseElevadoaMenosX(double x);
 double XCosXMenos2XQuadradoMaisTresXMenos1(double x);
+double raizCubica(double x);
 
 #endif

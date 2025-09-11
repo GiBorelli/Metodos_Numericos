@@ -43,4 +43,7 @@ double XCosXMenos2XQuadradoMaisTresXMenos1(double x){
     return x*cos(x) -2*x*x +3*x -1;
 }
 
+double raizCubica(double x){
+    return cbrt(x);
+}
 

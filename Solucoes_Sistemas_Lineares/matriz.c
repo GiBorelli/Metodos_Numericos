@@ -44,6 +44,12 @@ void preenchimentoVetorSolucao(double *b, int n){
     }
 }
 
+double *inicializacaoVetorZerado(double *v, int n){
+    v = (double *) malloc(n * sizeof(double));
+    for(int i = 0; i < n; i++)
+        v[i] = 0;
+}
+
 void impressaoMatriz(double **M, int n){
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n-1; j++){
