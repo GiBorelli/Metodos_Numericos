@@ -10,5 +10,6 @@ void impressaoMatriz(double **M, int n);
 void impressaoVetor(double *v, int n);
 void impressaoTriangularSuperior(double **U, int n);
 void impressaoTriangularInferior(double **L, int n);
+double *multiplicacaoMatrizVetor(double **M, double *v, int n);
 
 #endif

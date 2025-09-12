@@ -16,7 +16,7 @@ int main(){
     int escolha, n;
     printf("Escolha a Solucao a ser aplicada: \n");
     printf(" 1- Resolucao Matrizes Triangulares \n 2- Metodo da Eliminacao de Gauss\n 3- Fatoracao LU\n");  //Métodos Diretos
-    printf(" 4- Metodo Gauss-Jacobi \n ");   //Métodos Iterativos
+    printf(" 4- Metodo Gauss-Jacobi \n");   //Métodos Iterativos
     scanf(" %d", &escolha);
 
     printf("Digite a dimensao n da matriz quadrada: ");

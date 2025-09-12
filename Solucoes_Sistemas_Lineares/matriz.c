@@ -48,6 +48,7 @@ double *inicializacaoVetorZerado(double *v, int n){
     v = (double *) malloc(n * sizeof(double));
     for(int i = 0; i < n; i++)
         v[i] = 0;
+    return v;
 }
 
 void impressaoMatriz(double **M, int n){
@@ -88,5 +89,15 @@ void impressaoTriangularInferior(double **L, int n){
         if(i != n-1) printf("\n    ");
         else printf("\n");
     }
+}
+
+double *multiplicacaoMatrizVetor(double **M, double *v, int n){
+    double *res = inicializacaoVetorZerado(res, n);
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            res[i] += M[i][j] * v[j];
+        }
+    }
+    return res;
 }
 
