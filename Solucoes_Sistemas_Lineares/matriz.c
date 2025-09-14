@@ -101,3 +101,22 @@ double *multiplicacaoMatrizVetor(double **M, double *v, int n){
     return res;
 }
 
+double *multiplicacaoMatrizTriInferiorVetor(double **L, double *v, int n){
+    double *res = inicializacaoVetorZerado(res, n);
+    for(int i = 1; i < n; i++){
+        for(int j = 0; j < i; j++){
+            res[i] += L[i][j] * v[j];
+        }
+    }
+    return res;
+}
+
+double *multiplicacaoMatrizTriSuperiorVetor(double **U, double *v, int n){
+    double *res = inicializacaoVetorZerado(res, n);
+    for(int i = 0; i < n; i++){
+        for(int j = i; j < n; j++){
+            res[i] += U[i][j] * v[j];
+        }
+    }
+    return res;
+}
