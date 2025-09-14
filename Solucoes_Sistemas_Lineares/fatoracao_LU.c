@@ -71,7 +71,7 @@ void controleFatoracaoLU(double **A, int n){
     do{
         printf("Caso queira inserir um vetor solucao b, digite 1. Se nao quiser, digite 0: ");
         scanf(" %d", &novoB);
-        if(novoB != 1) printf("Valor inválido. \n");
+        if(novoB != 1 && novoB != 0) printf("Valor invalido. \n");
         else{
             double *b = (double *) malloc(n * sizeof(double));
             preenchimentoVetorSolucao(b, n);

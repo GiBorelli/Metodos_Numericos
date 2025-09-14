@@ -32,7 +32,11 @@ void controleEliminacaoGauss(double **A, int n){
     int resolve;
     printf("Caso queira a solucao da matriz, digite 1. Se nao quiser, digite 0: ");
     scanf(" %d", &resolve);
-    if(resolve) retroSubstituicao(n, A, b);
+    if(resolve){
+        double *x = retroSubstituicao(n, A, b);
+        printf("O vetor solucao X e: \nX = [");
+        impressaoVetor(x, n);
+    }
     
     free(b);
 }

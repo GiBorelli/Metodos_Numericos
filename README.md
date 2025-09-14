@@ -23,11 +23,20 @@ Repositório com todos os algoritmos desenvolvidos durante a disciplina de Méto
 
 3 - Fatoração LU (ou Decomposição LU)*
 
-4 - **
+4 - Método Iterativo de Gauss-Jacobi**
+
+5 - Método Iterativo de Gauss-Seidel**
 
 
 *Métodos Diretos
 
 **Métodos Iterativos
+
+
+### [Interpolação](Interpolacao)
+
+1 - 
+
+2 - 
 
 ### ...
