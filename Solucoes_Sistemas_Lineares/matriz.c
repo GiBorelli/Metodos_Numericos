@@ -51,6 +51,23 @@ double *inicializacaoVetorZerado(double *v, int n){
     return v;
 }
 
+/*int verificaTriangularSuperior(double **U, int n){
+    int triangular = 1;
+    for(int i = 0; i < n; i++){
+        if(sizeof(U[i]) / sizeof(double) != n){
+            triangular = 0;
+            break;
+        }
+        for(int j = 0; j < n; j++){
+            if((j < i && U[i][j] != 0.0) || (j == i && U[i][j] == 0.0)){
+                triangular = 0;
+                break;
+            }
+        }
+    }
+    return triangular;
+}*/
+
 void impressaoMatriz(double **M, int n){
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n-1; j++){

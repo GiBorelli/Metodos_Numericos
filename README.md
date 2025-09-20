@@ -33,10 +33,11 @@ Repositório com todos os algoritmos desenvolvidos durante a disciplina de Méto
 **Métodos Iterativos
 
 
+### [Ajuste de Curvas](Ajuste_de_Curvas)
+
+1 - Método dos Mínimos Quadrados
+
+
 ### [Interpolação](Interpolacao)
 
-1 - 
-
-2 - 
-
-### ...
+1 - ...
