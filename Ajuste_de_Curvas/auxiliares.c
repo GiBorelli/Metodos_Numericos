@@ -88,6 +88,5 @@ double somatorioXExponencial(double **pontos, int n, int exp){
     for(int i = 0; i < n; i++){
         soma += exponencial(pontos[i][0], exp);
     }
-    printf("\n");
     return soma;
 }

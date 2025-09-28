@@ -32,18 +32,15 @@ void ajusteCurva(double **pontos, int quantPontos, int n){
 
     printf("A funcao encontrada para o ajuste e: \n");
     for(int i = 0; i < n+1; i++){
-        if(i < n-1){
-            if(x[i] != 0)
-                printf("%.2lf * x^%d + ", x[i], n-i);
-        }
+        if(x[i] >= -0.00000001 && x[i] <= 0.00000001)     //Arredondamento para valores muito próximos de 0, 8 casas de aproximação
+            x[i] = 0.0;
+        else if(i < n-1)
+            printf("%.4lf * x^%d + ", x[i], n-i);
         else if(i == n-1){
-            if(x[i] != 0 && x[i+1] != 0)
-                printf("%.2lf * x + ", x[i]);
-            else if(x[i] != 0)
-                printf("%.2lf * x", x[i]);
+            printf("%.4lf * x + ", x[i]);
         }
         else 
-            printf("%.2lf\n", x[i]);
+            printf("%.4lf\n", x[i]);
     }
 
     liberaMatriz(A, n+1);
