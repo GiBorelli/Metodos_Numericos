@@ -37,6 +37,8 @@ Repositório com todos os algoritmos desenvolvidos durante a disciplina de Méto
 
 1 - Método dos Mínimos Quadrados
 
+2 - Correção dos Dados de Entrada
+
 
 ### [Interpolação](Interpolacao)
 
