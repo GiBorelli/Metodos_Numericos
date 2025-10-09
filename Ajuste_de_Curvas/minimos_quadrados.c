@@ -4,7 +4,7 @@
 #include "minimos_quadrados.h"
 
 double **metodoMinimosQuadrados(double **pontos, int quantPontos, int n, double *b){    //n = expoente
-    double **A = alocacaoMatrizQuadrada(A, n+1);
+    double **A = alocacaoMatriz(A, n+1, n+1);
     int i, j, q;
     for(i = 0; i < n+1; i++){
         for(j = 0; j < n+1; j++){
@@ -32,15 +32,15 @@ void ajusteCurva(double **pontos, int quantPontos, int n){
 
     printf("A funcao encontrada para o ajuste e: \n");
     for(int i = 0; i < n+1; i++){
-        if(x[i] >= -0.00000001 && x[i] <= 0.00000001)     //Arredondamento para valores muito próximos de 0, 8 casas de aproximação
+        if(x[i] >= -0.00001 && x[i] <= 0.00001)     //Arredondamento para valores muito próximos de 0, 5 casas de aproximação
             x[i] = 0.0;
         else if(i < n-1)
-            printf("%.4lf * x^%d + ", x[i], n-i);
+            printf("%.5lf * x^%d + ", x[i], n-i);
         else if(i == n-1){
-            printf("%.4lf * x + ", x[i]);
+            printf("%.5lf * x + ", x[i]);
         }
         else 
-            printf("%.4lf\n", x[i]);
+            printf("%.5lf\n", x[i]);
     }
 
     liberaMatriz(A, n+1);

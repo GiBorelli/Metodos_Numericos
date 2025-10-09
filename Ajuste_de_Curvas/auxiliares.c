@@ -2,28 +2,11 @@
 #include <stdlib.h>
 #include "auxiliares.h"
 
-double **alocacaoMatrizQuadrada(double **A, int n){
+double **alocacaoMatriz(double **A, int n, int m){
     A = (double **) malloc(n * sizeof(double *));
     if(A != NULL){
         for(int i = 0; i < n; i++){
-            A[i] = (double *) malloc(n * sizeof(double));
-            if(A[i] == NULL){
-                printf("Alocacao Invalida");
-                exit(1);
-            }
-        }    
-    } else {
-        printf("Alocacao Invalida");
-        exit(1);
-    }
-    return A;
-}
-
-double **alocacaoMatrizPontos(double **A, int n){
-    A = (double **) malloc(n * sizeof(double *));
-    if(A != NULL){
-        for(int i = 0; i < n; i++){
-            A[i] = (double *) malloc(2 * sizeof(double));
+            A[i] = (double *) malloc(m * sizeof(double));
             if(A[i] == NULL){
                 printf("Alocacao Invalida");
                 exit(1);

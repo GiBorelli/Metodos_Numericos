@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <float.h>
-#include "ajuste_valores.h"
+#include <string.h>
+#include "leitura_valores.h"
+#include "auxiliares.h"
 
 int verificaValidadePonto(double **pontos, double x, int n){
     int valido = 1;
@@ -35,6 +37,27 @@ void leituraPontos(double **pontos, int n){
         printf("Digite o valor y para x = %.2lf: ", pontos[i][0]);
         scanf(" %lf", &pontos[i][1]);
     }
+}
+
+void leituraPontosArq(double **pontos, int n, FILE *arq){
+    char *linha = (char *) malloc(256 * sizeof(char)), *token;
+    int i = 0, j = 0;
+    while (fgets(linha, 256, arq) != NULL){
+        j = 0;
+        while(linha[j] != '\n') j++;
+        linha[j] = '\0';
+        token = strtok(linha, "\t");
+        j = 0;
+        while (token != NULL) {
+            pontos[i][j] = atof(token);
+            printf("%.4lf  ", pontos[i][j]);
+            token = strtok(NULL, "\t");
+            j++;
+        }
+        i++;
+        printf("\n");
+    }
+    free(linha);
 }
 
 void procuraIntervalo(double **pontos, int pos, int n, double *intervalo){
@@ -80,4 +103,41 @@ int limpezaValoresRepetidos(double **pontos, int n){
     }
     return n;
 }
+
+double **controleLeituraValores(int *quantPontos){
+    double **pontos = alocacaoMatriz(pontos, *quantPontos, *quantPontos);
+    int escolha;
+    do{
+        printf("Escolha o método de leitura dos pontos: \n 1- Leitura do teclado (terminal)\n 2- Leitura de Arquivo\n");
+        scanf(" %d", &escolha);
+    } while(escolha != 1 && escolha != 2);
+
+    if(escolha == 1){
+        printf("Caso deseje verificacao de valores x repetidos na leitura, digite 1. \nSe nao desejar, somente um dos valores repetidos sera considerado (digite um numero diferente de 1).\n");
+        scanf(" %d", &escolha);
+        if(escolha == 1)
+            leituraPontosVerificada(pontos, *quantPontos);
+        else{
+            leituraPontos(pontos, *quantPontos);
+            *quantPontos = limpezaValoresRepetidos(pontos, *quantPontos);
+        } 
+    }
+    else{
+        char nome_arq[150];
+        printf("Digite o nome do arquivo a ser lido (incluindo a extensao do arquivo, ex: .txt ou .dat): \n");
+        scanf("%s", &nome_arq);
+
+        FILE *arq;
+        arq = fopen(nome_arq, "r");     //somente leitura
+        if(arq == NULL){
+            printf("Erro na abertura do arquivo. \n");
+            return NULL;
+        }
+        leituraPontosArq(pontos, *quantPontos, arq);
+        fclose(arq);
+    }
+
+    return pontos;
+}
+
 
