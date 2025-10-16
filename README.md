@@ -28,17 +28,16 @@ Repositório com todos os algoritmos desenvolvidos durante a disciplina de Méto
 5 - Método Iterativo de Gauss-Seidel**
 
 
-*Métodos Diretos
-
+*Métodos Diretos  
 **Métodos Iterativos
 
 
 ### [Ajuste de Curvas](Ajuste_de_Curvas)
 
-1 - Método dos Mínimos Quadrados
-    1.1 - Leitura e saida pelo terminal
-    1.2 - Leitura por arquivo .txt e saida terminal
-    1.3 - Leitura por arquivo .txt e saida por terminal e arquivo para simulacao
+1 - Método dos Mínimos Quadrados  
+- 1.1: Leitura e saida pelo terminal
+- 1.2: Leitura por arquivo .txt e saida terminal
+- 1.3: Leitura por arquivo .txt e saida por terminal e arquivo para simulacao
 
 
 ### [Interpolação](Interpolacao)
@@ -51,10 +50,11 @@ Repositório com todos os algoritmos desenvolvidos durante a disciplina de Méto
 ### [Integração Numérica](Integracao_Numerica)
 
 1 - Regra dos Trapézios
-    1.1 - 
+-   1.1: Aplicação Única
+-   1.2: Aplicação Múltipla (Repetida)
 
 2 - Primeira Regra de Simpson (1/3 de Simpson)
-    2.1 - 
+-   1.1: Aplicação Única
+-   1.2: Aplicação Múltipla (Repetida)
 
-3 - Primeira Regra de Simpson (1/3 de Simpson)
-
+3 - Segunda Regra de Simpson (3/8 de Simpson)
