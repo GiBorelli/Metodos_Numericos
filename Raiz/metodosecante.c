@@ -5,7 +5,7 @@
 double MetodoSecante(double (*func)(double), double x0, double x1, double epsilon){
     int n = 1;
     double xAnt = x0, fxAnt = func(xAnt), xAtual = x1, fxAtual = func(xAtual);
-    double xProx = xProx = xAtual - (fxAtual*(xAtual-xAnt)/(fxAtual-fxAnt)), fxProx;
+    double xProx = xAtual - (fxAtual*(xAtual-xAnt)/(fxAtual-fxAnt)), fxProx;
     while(modulo(fxProx = func(xProx)) > epsilon && modulo(xProx - xAtual) > epsilon){
         xAnt = xAtual;
         fxAnt = fxAtual;

@@ -17,6 +17,7 @@ int main(){
     do{
         printf("Escolha o metodo de leitura dos pontos: \n 1- Leitura do teclado (terminal)\n 2- Leitura de Arquivo\n");
         scanf(" %d", &escolha);
+        if(escolha != 1 && escolha != 2) printf("Valor invalido. \n");
     } while(escolha != 1 && escolha != 2);
 
     if(escolha == 1){

@@ -102,6 +102,10 @@ void leituraPontosArq(double **pontos, int n, FILE *arq){
 double **controleLeituraTerminal(int *quantPontos){
     printf("Digite a quantidade de pontos do conjunto: ");
     scanf(" %d", quantPontos);
+    if(quantPontos <= 0){
+        printf("Quantidade de pontos invalida.\n");
+        return NULL;
+    }
 
     double **pontos = alocacaoMatriz(pontos, *quantPontos, 2);
 
