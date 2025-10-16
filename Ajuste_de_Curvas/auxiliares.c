@@ -33,6 +33,15 @@ double *inicializacaoVetorZerado(double *v, int n){
     return v;
 }
 
+void impressaoMatriz(double **M, int n, int m){
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m-1; j++){
+            printf("%.2lf  ", M[i][j]);
+        }
+        printf("%.2lf\n", M[i][m-1]);
+    }
+}
+
 double *retroSubstituicao(double **A, double *b, int n){
     double *x = (double*) malloc(n * sizeof(double));
     x[n-1] = b[n-1]/A[n-1][n-1];
@@ -72,4 +81,36 @@ double somatorioXExponencial(double **pontos, int n, int exp){
         soma += exponencial(pontos[i][0], exp);
     }
     return soma;
+}
+
+void impressaoFuncao(double *x, int n){
+    for(int i = 0; i < n+1; i++){
+        if(x[i] >= -0.00001 && x[i] <= 0.00001)     //Arredondamento para valores muito próximos de 0, 5 casas de aproximação
+            x[i] = 0.0;
+        else if(x[i] < 0){
+            if(i < n-1)
+                printf("%.5lf * x^%d ", x[i], n-i);
+            else if(i == n-1){
+                printf("%.5lf * x ", x[i]);
+            }
+            else 
+                printf("%.5lf\n", x[i]);
+        }
+        else{
+            if(i == 0){
+                if(i != n-1 && i != n)
+                    printf("%.5lf * x^%d ", x[i], n-i);
+                else if(i == n-1)
+                    printf("%.5lf * x ", x[i]);
+                else 
+                    printf("%.5lf\n", x[i]);
+            }
+            else if(i < n-1)
+                printf("+ %.5lf * x^%d ", x[i], n-i);
+            else if(i == n-1)
+                printf("+ %.5lf * x ", x[i]);
+            else 
+                printf("+ %.5lf\n", x[i]);
+        }
+    }
 }

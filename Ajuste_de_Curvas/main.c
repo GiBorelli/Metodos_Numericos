@@ -12,10 +12,20 @@
 
 int main(){
     int quantPontos, escolha;
-    printf("Digite a quantidade de pontos do conjunto: ");
-    scanf(" %d", &quantPontos);
+    double **pontos;
 
-    double **pontos = controleLeituraValores(&quantPontos);
+    do{
+        printf("Escolha o metodo de leitura dos pontos: \n 1- Leitura do teclado (terminal)\n 2- Leitura de Arquivo\n");
+        scanf(" %d", &escolha);
+    } while(escolha != 1 && escolha != 2);
+
+    if(escolha == 1){
+        pontos = controleLeituraTerminal(&quantPontos);
+    }
+    else{
+        pontos = controleLeituraArquivo(&quantPontos);
+    }
+
     if(pontos != NULL){
         do{      
             int n;
@@ -29,7 +39,7 @@ int main(){
         } while(escolha == 1);
     }
     else
-        printf("Nao foi possivel fazer a leitura dos valores, compile novamente o programa."); 
+        printf("Nao foi possivel fazer a leitura dos valores, compile novamente o programa.\n"); 
     
     liberaMatriz(pontos, quantPontos);
     printf("Encerrando Programa.\n");

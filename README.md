@@ -36,10 +36,25 @@ Repositório com todos os algoritmos desenvolvidos durante a disciplina de Méto
 ### [Ajuste de Curvas](Ajuste_de_Curvas)
 
 1 - Método dos Mínimos Quadrados
-
-2 - Correção dos Dados de Entrada (faltante)
+    1.1 - Leitura e saida pelo terminal
+    1.2 - Leitura por arquivo .txt e saida terminal
+    1.3 - Leitura por arquivo .txt e saida por terminal e arquivo para simulacao
 
 
 ### [Interpolação](Interpolacao)
 
-1 - ...
+1 - Definição - Sistema Linear
+
+2 - Forma de Newton
+
+
+### [Integração Numérica](Integracao_Numerica)
+
+1 - Regra dos Trapézios
+    1.1 - 
+
+2 - Primeira Regra de Simpson (1/3 de Simpson)
+    2.1 - 
+
+3 - Primeira Regra de Simpson (1/3 de Simpson)
+

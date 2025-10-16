@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <float.h>
 #include <string.h>
-#include "leitura_valores.h"
 #include "auxiliares.h"
+#include "leitura_valores.h"
 
 int verificaValidadePonto(double **pontos, double x, int n){
     int valido = 1;
@@ -37,27 +37,6 @@ void leituraPontos(double **pontos, int n){
         printf("Digite o valor y para x = %.2lf: ", pontos[i][0]);
         scanf(" %lf", &pontos[i][1]);
     }
-}
-
-void leituraPontosArq(double **pontos, int n, FILE *arq){
-    char *linha = (char *) malloc(256 * sizeof(char)), *token;
-    int i = 0, j = 0;
-    while (fgets(linha, 256, arq) != NULL){
-        j = 0;
-        while(linha[j] != '\n') j++;
-        linha[j] = '\0';
-        token = strtok(linha, "\t");
-        j = 0;
-        while (token != NULL) {
-            pontos[i][j] = atof(token);
-            printf("%.4lf  ", pontos[i][j]);
-            token = strtok(NULL, "\t");
-            j++;
-        }
-        i++;
-        printf("\n");
-    }
-    free(linha);
 }
 
 void procuraIntervalo(double **pontos, int pos, int n, double *intervalo){
@@ -104,40 +83,66 @@ int limpezaValoresRepetidos(double **pontos, int n){
     return n;
 }
 
-double **controleLeituraValores(int *quantPontos){
-    double **pontos = alocacaoMatriz(pontos, *quantPontos, *quantPontos);
+void leituraPontosArq(double **pontos, int n, FILE *arq){
+    char *linha = (char *) malloc(256 * sizeof(char));
+    int i = 0, res;
+    while (fgets(linha, 256, arq) != NULL){
+        size_t len = strlen(linha);
+        while (len > 0 && (linha[len-1] == '\n' || linha[len-1] == '\r')) {
+            linha[--len] = '\0';
+        }
+        if ((res = sscanf(linha, "%lf %lf", &pontos[i][0], &pontos[i][1])) == 2) {
+            printf("Linha %d: %.2f, %.2f\n", i, pontos[i][0], pontos[i][1]);
+        }
+        i++;
+    }
+    free(linha);
+}
+
+double **controleLeituraTerminal(int *quantPontos){
+    printf("Digite a quantidade de pontos do conjunto: ");
+    scanf(" %d", quantPontos);
+
+    double **pontos = alocacaoMatriz(pontos, *quantPontos, 2);
+
     int escolha;
-    do{
-        printf("Escolha o método de leitura dos pontos: \n 1- Leitura do teclado (terminal)\n 2- Leitura de Arquivo\n");
-        scanf(" %d", &escolha);
-    } while(escolha != 1 && escolha != 2);
+    printf("Caso deseje verificacao de valores x repetidos na leitura, digite 1. \nSe nao desejar, somente um dos valores repetidos sera considerado (digite um numero diferente de 1).\n");
+    scanf(" %d", &escolha);
 
     if(escolha == 1){
-        printf("Caso deseje verificacao de valores x repetidos na leitura, digite 1. \nSe nao desejar, somente um dos valores repetidos sera considerado (digite um numero diferente de 1).\n");
-        scanf(" %d", &escolha);
-        if(escolha == 1)
-            leituraPontosVerificada(pontos, *quantPontos);
-        else{
-            leituraPontos(pontos, *quantPontos);
-            *quantPontos = limpezaValoresRepetidos(pontos, *quantPontos);
-        } 
+        leituraPontosVerificada(pontos, *quantPontos);
     }
     else{
-        char nome_arq[150];
-        printf("Digite o nome do arquivo a ser lido (incluindo a extensao do arquivo, ex: .txt ou .dat): \n");
-        scanf("%s", &nome_arq);
-
-        FILE *arq;
-        arq = fopen(nome_arq, "r");     //somente leitura
-        if(arq == NULL){
-            printf("Erro na abertura do arquivo. \n");
-            return NULL;
-        }
-        leituraPontosArq(pontos, *quantPontos, arq);
-        fclose(arq);
-    }
-
+        leituraPontos(pontos, *quantPontos);
+        *quantPontos = limpezaValoresRepetidos(pontos, *quantPontos);
+    } 
     return pontos;
 }
 
+double **controleLeituraArquivo(int *quantPontos){
+    char nome_arq[150];
+    printf("Digite o nome do arquivo a ser lido (incluindo a extensao do arquivo, ex: .txt ou .dat): \n");
+    scanf("%s", &nome_arq);
 
+    FILE *arq;
+    arq = fopen(nome_arq, "r");     //somente leitura
+    if(arq == NULL){
+        printf("Erro na abertura do arquivo. \n");
+        return NULL;
+    }
+    printf("Pegando a quantidade de valores para leitura da primeira linha do arquivo.\n");
+    if(fgets(nome_arq, 256, arq) != NULL){
+        printf("%s", nome_arq);
+        if(sscanf(nome_arq, "%d", quantPontos) == 1){
+            printf("Quantidade de pontos inicial: %d \n", *quantPontos);
+        }
+    }
+
+    double **pontos = alocacaoMatriz(pontos, *quantPontos, 2);
+    leituraPontosArq(pontos, *quantPontos, arq);
+    *quantPontos = limpezaValoresRepetidos(pontos, *quantPontos);
+    printf("Quantidade de pontos total: %d \n", *quantPontos);
+
+    fclose(arq);
+    return pontos;
+}

@@ -30,18 +30,7 @@ void ajusteCurva(double **pontos, int quantPontos, int n){
     eliminacaoGauss(A, b, n+1);
     double *x = retroSubstituicao(A, b, n+1);
 
-    printf("A funcao encontrada para o ajuste e: \n");
-    for(int i = 0; i < n+1; i++){
-        if(x[i] >= -0.00001 && x[i] <= 0.00001)     //Arredondamento para valores muito próximos de 0, 5 casas de aproximação
-            x[i] = 0.0;
-        else if(i < n-1)
-            printf("%.5lf * x^%d + ", x[i], n-i);
-        else if(i == n-1){
-            printf("%.5lf * x + ", x[i]);
-        }
-        else 
-            printf("%.5lf\n", x[i]);
-    }
+    impressaoFuncao(x, n);
 
     liberaMatriz(A, n+1);
     free(b);

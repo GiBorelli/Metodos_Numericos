@@ -8,6 +8,7 @@ void leituraPontosArq(double **pontos, int n, FILE *arq);
 void procuraIntervalo(double **pontos, int pos, int n, double *intervalo);
 int apagaLinha(double **pontos, int linha, int n);
 int limpezaValoresRepetidos(double **pontos, int n);
-double **controleLeituraValores(int *quantPontos);
+double **controleLeituraTerminal(int *quantPontos);
+double **controleLeituraArquivo(int *quantPontos);
 
 #endif
