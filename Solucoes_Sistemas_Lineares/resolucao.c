@@ -16,9 +16,14 @@ double *retroSubstituicao(int n, double **A, double *b){
     return x;
 }
 
-void controleRetroSubstituicao(double **A, int n){
+void controleRetroSubstituicao(double **A, int n, int escolha, char nome_arq[150], FILE *arq){
     double *b = (double *) malloc(n * sizeof(double));
-    preenchimentoVetorSolucao(b, n);
+    if(escolha == 1){
+        preenchimentoVetorSolucao(b, n);
+    }
+    else{
+        b = preenchimentoVetorArquivo(n, nome_arq, arq);
+    }
 
     double *x = retroSubstituicao(n, A, b);
 

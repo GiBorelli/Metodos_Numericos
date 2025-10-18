@@ -21,20 +21,23 @@ double **construcaoDiferencasDivididas(double **pontos, int n){
     return dif;
 }
 
-
-
 void controleNewton(double **pontos, int n){
     double **difDiv = construcaoDiferencasDivididas(pontos, n);
     
     printf("O polinomio de Newton e: \n");
-    printf("p%d (x) = %.4lf", n-1, difDiv[0][0]);
-    for(int i = 1; i < n; i++){
-        for(int j = 1; j < i; j++){
-            if(pontos[i-1][0] < 0)
-                printf(" + (x %.4lf) * (%.4lf)", pontos[i-1][0], difDiv[0][i]);
+    printf("p%d (x) = ", n-1);
+    for(int i = 0; i < n; i++){
+        if(i != 0) printf(" + ");
+        for(int j = 1; j <= i; j++){
+            if(pontos[j-1][0] < 0.0)
+                printf("(x +%.4lf) * ", modulo(pontos[j-1][0]));
             else
-                printf(" + (x - %.4lf) * (%.4lf)", pontos[i-1][0], difDiv[0][i]);
+                printf("(x -%.4lf) * ", pontos[j-1][0]);
         }
+        if( difDiv[0][i] < 0)
+            printf("(%.4lf)", difDiv[0][i]);
+        else 
+            printf("%.4lf", difDiv[0][i]);
     }
     printf("\n");
 }

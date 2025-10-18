@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "matriz.h"
 
 double **alocacaoMatrizQuadrada(double **A, int n){
@@ -36,12 +37,70 @@ void preenchimentoMatriz(double **A, int n){
     }
 }
 
+double **preenchimentoMatrizArquivo(int *n, char nome_arq[150], FILE *arq){
+    printf("Pegando a dimensao da matriz da primeira linha do arquivo.\n");
+    if(fgets(nome_arq, 256, arq) != NULL){
+        printf("%s", nome_arq);
+        if(sscanf(nome_arq, "%d", n) == 1){
+           printf("Matriz %dx%d \n", *n, *n);
+        }
+        else{
+            printf("Primeira linha com valor nao valido para processamento.\n");
+            return NULL;
+        }
+    }  
+    
+    double **A = alocacaoMatrizQuadrada(A, *n);
+
+    char *linha = (char *) malloc(256 * sizeof(char));
+    int i = 0, j, res;
+    printf("Valores lidos: \n");
+    while (i < *n && fgets(linha, 256, arq) != NULL){
+        j = 0;
+        char *token = strtok(linha, "\t");
+        while(token != NULL && j < *n){
+            char *fim_ptr;
+            A[i][j] = strtod(token, &fim_ptr);
+
+            if (*fim_ptr == '\0' || *fim_ptr == '\n') {         //verificando se a conversao foi bem sucedida
+                printf("Valor lido: %.6lf\n", A[i][j]);
+            }
+            j++;
+            token = strtok(NULL, "\t");
+        }
+        i++;
+    }
+    free(linha);
+    return A;
+}
+
 void preenchimentoVetorSolucao(double *b, int n){
     printf("Digite os valores do vetor solucao b: \n");
     for(int i = 0; i < n; i++){
         printf("b[%d] = ", i+1);
         scanf(" %lf", &b[i]);
     }
+}
+
+double *preenchimentoVetorArquivo(int n, char nome_arq[150], FILE *arq){
+    double *b = (double *) malloc(n * sizeof(double));
+    char *linha = (char *) malloc(256 * sizeof(char));
+
+    int i = 0, res;
+    printf("b = [");
+    while(i < n && fgets(linha, 256, arq) != NULL){
+        if(sscanf(linha, "%lf", b[i]) == 1){
+           printf(" %.6lf ", b[i]);
+        }
+        else{
+            printf("Primeira linha com valor nao valido para processamento.\n");
+            return NULL;
+        }
+        b++;
+    }
+    printf("]");
+    free(linha);
+    return b;
 }
 
 double *inicializacaoVetorZerado(double *v, int n){

@@ -56,3 +56,7 @@ double exponencial(double v, int n){
         res *= v;
     return res;
 }
+
+double modulo(double x){
+    return x < 0.0? -x : x;
+}

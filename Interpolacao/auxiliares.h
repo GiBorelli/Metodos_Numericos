@@ -7,5 +7,6 @@ double *inicializacaoVetorZerado(double *v, int n);
 void impressaoMatriz(double **M, int n, int m);
 double *copiaColunaParaVetor(double **M, double *b, int c, int n);
 double exponencial(double v, int n);
+double modulo(double x);
 
 #endif

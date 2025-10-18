@@ -3,6 +3,6 @@
 
 void criterioDeSassenfeld(double **C, int n);
 void metodoGaussSeidel(double **C, double *g, double *X, int n, double epsilon, int nMax);
-void controleGaussSeidel(double **A, int n);
+void controleGaussSeidel(double **A, int n, int escolha, char nome_arq[150], FILE *arq);
 
 #endif

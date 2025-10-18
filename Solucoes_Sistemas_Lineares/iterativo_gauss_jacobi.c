@@ -57,9 +57,14 @@ void metodoGaussJacobi(double **C, double *g, double *X, int n, double epsilon, 
     free(dif);
 }
 
-void controleGaussJacobi(double **A, int n){
+void controleGaussJacobi(double **A, int n, int escolha, char nome_arq[150], FILE *arq){
     double *b = (double *) malloc(n * sizeof(double));
-    preenchimentoVetorSolucao(b, n);
+    if(escolha == 1){
+        preenchimentoVetorSolucao(b, n);
+    }
+    else{
+        b = preenchimentoVetorArquivo(n, nome_arq, arq);
+    }
     double **C = alocacaoMatrizQuadrada(C, n);
     double *g = (double *) malloc(n * sizeof(double));
 
@@ -70,7 +75,6 @@ void controleGaussJacobi(double **A, int n){
     printf("O vetor g criado e: \ng = [");
     impressaoVetor(g, n);
 
-    int escolha;
     printf("Caso queira descobrir a convergencia do Metodo, digite 1. Se nao quiser, digite 0: ");
     scanf(" %d", &escolha);
     if(escolha) testeConvergenciaGaussJacobi(C, n);
@@ -83,6 +87,7 @@ void controleGaussJacobi(double **A, int n){
     int nMax;
     printf("Digite a quantidade maxima de iteracoes do metodo: ");
     scanf(" %d", &nMax);
+    printf("\n");
 
     metodoGaussJacobi(C, g, X0, n, epsilon, nMax);
 

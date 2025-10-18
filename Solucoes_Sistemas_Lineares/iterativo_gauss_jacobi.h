@@ -3,6 +3,6 @@
 
 void testeConvergenciaGaussJacobi(double **C, int n);
 void metodoGaussJacobi(double **C, double *g, double *X, int n, double epsilon, int nMax);
-void controleGaussJacobi(double **A, int n);
+void controleGaussJacobi(double **A, int n, int escolha, char nome_arq[150], FILE *arq);
 
 #endif
