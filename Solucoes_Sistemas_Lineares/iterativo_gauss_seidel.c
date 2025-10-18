@@ -26,6 +26,30 @@ void criterioDeSassenfeld(double **C, int n){       //Convergencia do Método Ga
     free(lBetas);
 }
 
+void metodoGaussSeidel(double **C, double *g, double *Xk, int n, double epsilon, int nMax){
+    int i, k = 0;
+    double *dif = (double *) malloc(n * sizeof(double));
+    do{
+        double *multMXk = multiplicacaoMatrizTriSuperiorVetor(C, Xk, n);       // C_tringular_superior X(k) = N X(k)
+        double *multMXk1;       
+        for(i = 0; i < n; i++){
+            dif[i] = Xk[i];
+            multMXk1 = multiplicacaoMatrizTriInferiorVetor(C, Xk, n);       // C_triangular_inferior X(k+1) = M X(k+1)
+            Xk[i] = multMXk1[i] + multMXk[i] + g[i];       //X(k+1) = M X(k+1) + N X(k) + g
+            dif[i] = Xk[i] - dif[i];        // X(k+1) - X(k)
+        }
+        k++;
+        
+        printf("X(%d) = [", k);
+        for(i = 0; i < n-1; i++){
+            printf("%.8lf  ", Xk[i]);
+        }
+        printf("%.8lf] \n", Xk[i]);
+
+    } while(maximoEmModulo(dif, n)/maximoEmModulo(Xk, n) > epsilon && k < nMax);          //Erro = ||X(k+1)-X(k)||_inf / ||X(k+1)||_inf > epsilon && ...
+    if(k == nMax) printf("Numero de tentativas estourado, aproximacao sem conformacao com erro.\n");
+    free(dif);
+}
 
 void controleGaussSeidel(double **A, int n){
     double *b = (double *) malloc(n * sizeof(double));

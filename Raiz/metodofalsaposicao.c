@@ -11,7 +11,7 @@ void MetodoFalsaPosicao(double (*func)(double), double a, double b, double epsil
         n++;
         x = (a * funcB - b * funcA)/(funcB - funcA);
         funcX = func(x);
-        printf("%2d - [%.4f; %.4lf] - f(%.4lf) = %.4lf\n", n, a, b, x, funcX);
+        printf("%2d - [%.8f; %.8lf] - f(%.8lf) = %.8lf\n", n, a, b, x, funcX);
         if((modulo(funcX)) < epsilon)
             break;
         if(funcA * funcX < 0){

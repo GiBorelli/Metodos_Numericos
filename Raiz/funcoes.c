@@ -17,6 +17,14 @@ double doisX(double x){
     return 2*x;
 }
 
+double XcuboMais4XquadradoMenos10(double x){
+    return x*x*x + 4 * x *x -10;
+}
+
+double raizXMenosCosX(double x){
+    return sqrt(x) - cos(x);
+}
+
 double derivadaDefinicao(double (*func)(double), double x){
     double h = 0.0001;
     double num = func(x+h) - func(x);
