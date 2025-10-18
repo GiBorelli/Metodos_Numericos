@@ -148,6 +148,7 @@ double **controleLeituraArquivo(int *quantPontos){
 
     double **pontos = alocacaoMatriz(pontos, *quantPontos, 2);
     leituraPontosArq(pontos, *quantPontos, arq);
+    printf("Fazendo a limpeza de valores x repetidos. \n");
     *quantPontos = limpezaValoresRepetidos(pontos, *quantPontos);
     printf("Quantidade de pontos total: %d \n", *quantPontos);
 

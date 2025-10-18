@@ -13,15 +13,12 @@ double **construcaoDiferencasDivididas(double **pontos, int n){
         for(i = 0; i < n-j; i++){
             dif[i][j] = (dif[i+1][j-1]-dif[i][j-1])/(pontos[i+j][0]-pontos[i][0]);
             /*printf("dif[%d][%d] = %.4lf\n", i, j, dif[i][j]);
-            printf("%.4lf - %.4lf / %.4lf - %.4lf = ", dif[i+1][j-1], dif[i][j-1], pontos[i+1][0], pontos[i][0]);
-            printf("%.4lf / %.4lf\n", dif[i+1][j-1]-dif[i][j-1], pontos[i+j][0]-pontos[i][0]);*/
+            printf("%.4lf - %.4lf / %.4lf - %.4lf = ", dif[i+1][j-1], dif[i][j-1], pontos[i+1][0], pontos[i][0]);*/
         }
     }
 
     return dif;
 }
-
-
 
 void controleNewton(double **pontos, int n){
     double **difDiv = construcaoDiferencasDivididas(pontos, n);

@@ -39,7 +39,7 @@ int main(){
             else{
                 controleNewton(pontos, quantPontos);
             }
-        }while(escolha != 1 && escolha != 2);
+        } while(escolha != 1 && escolha != 2);
     }
     else 
         printf("Nao foi possivel fazer a leitura dos valores, compile novamente o programa.\n");
