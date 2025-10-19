@@ -68,8 +68,8 @@ int apagaLinha(double **pontos, int linha, int n){
 
 int limpezaValoresRepetidos(double **pontos, int n){
     for(int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++){
-            if(i != j && pontos[i][0] == pontos[j][0]){     //Se ponto repetido
+        for(int j = i+1; j < n; j++){
+            if(pontos[i][0] == pontos[j][0]){     //Se ponto repetido
                 double *intervalo = (double *) malloc(2 * sizeof(double));
                 procuraIntervalo(pontos, i, n, intervalo);
                 if(pontos[i][1] >= intervalo[0] && pontos[i][1] <= intervalo[1])    //ou se ambos dentro intervalor apaga segunda linha repetida
@@ -92,8 +92,11 @@ void leituraPontosArq(double **pontos, int n, FILE *arq){
         while (len > 0 && (linha[len-1] == '\n' || linha[len-1] == '\r')) {
             linha[--len] = '\0';
         }
-        if ((res = sscanf(linha, "%lf %lf", &pontos[i][0], &pontos[i][1])) == 2) {
-            printf("x%d = %.2f, f(x%d) = %.2f\n", i, pontos[i][0], i, pontos[i][1]);
+        if((res = sscanf(linha, "%lf %lf", &pontos[i][0], &pontos[i][1])) == 2) {
+            //printf("x%d = %.2f, f(x%d) = %.2f\n", i, pontos[i][0], i, pontos[i][1]);
+        }else{
+            printf("Linha com valores invalidos para uso.\n");
+            exit(1);
         }
         i++;
     }

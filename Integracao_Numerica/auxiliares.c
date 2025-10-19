@@ -42,21 +42,10 @@ void impressaoMatriz(double **M, int n, int m){
     }
 }
 
-double *copiaColunaParaVetor(double **M, double *b, int c, int n){
-    b = (double *) malloc(n * sizeof(double));
-    for(int i = 0; i < n; i++){
-        b[i] = M[i][c];
+double *copiaAlgumasLinhas(double *v, int n, double *v2, int ini, int quant){
+    v2 = (double *) malloc(quant * sizeof(double));
+    for(int i = 0; i < quant && ini+i < n; i++){
+        v2[i] = v[ini+i];
     }
-    return b;
-}
-
-double exponencial(double v, int n){
-    double res = 1;
-    for(int i = 1; i <= n; i++)
-        res *= v;
-    return res;
-}
-
-double modulo(double x){
-    return x < 0.0? -x : x;
+    return v2;
 }

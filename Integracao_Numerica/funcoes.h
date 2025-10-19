@@ -12,6 +12,7 @@ double doisX(double x);
 double XcuboMais4XquadradoMenos10(double x);
 double raizXMenosCosX(double x);
 double EulerElevadoX(double x);
+double exponencial(double v, int n);
 double derivadaDefinicao(double (*func)(double), double x);
 //Equacoes da Lista 1:
 double XcuboMenosSenX(double x);

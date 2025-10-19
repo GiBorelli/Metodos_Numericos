@@ -29,6 +29,13 @@ double EulerElevadoX(double x){
     return exp(x);
 }
 
+double exponencial(double v, int n){
+    double res = 1;
+    for(int i = 1; i <= n; i++)
+        res *= v;
+    return res;
+}
+
 double derivadaDefinicao(double (*func)(double), double x){
     double h = 0.00000001;
     double num = func(x+h) - func(x);

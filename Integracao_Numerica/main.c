@@ -1,6 +1,6 @@
 /*
     Para começar o código no terminal, digite os seguintes comandos: 
-        gcc main.c auxiliares.c leitura_valores.c -o main
+        gcc main.c funcoes.c auxiliares.c leitura_valores.c regras.c -o main
         .\main
 */
 
@@ -9,13 +9,13 @@
 #include "funcoes.h"
 #include "auxiliares.h"
 #include "leitura_valores.h"
-#include "regra_trapezio.h"
+#include "regras.h"
 
 int main(){
     double (*funcao) (double x) = EulerElevadoX;
     
     int quantPontos, escolha;
-    double **pontos;
+    double *pontos;
 
     do{
         printf("Escolha o metodo de leitura dos pontos: \n 1- Leitura do teclado (terminal)\n 2- Leitura de Arquivo\n");
@@ -24,10 +24,10 @@ int main(){
     } while(escolha != 1 && escolha != 2);
 
     if(escolha == 1){
-        pontos = controleLeituraTerminal(&quantPontos);
+        pontos = controleLeituraTerminal(&quantPontos, funcao);
     }
     else{
-        pontos = controleLeituraArquivo(&quantPontos);
+        pontos = controleLeituraArquivo(&quantPontos, funcao);
     }
 
     double integral;
@@ -38,18 +38,20 @@ int main(){
             printf(" 3- Primeira Regra de Simpson (1/3) \n 4- Primeira Regra de Simpson (1/3) Repetida\n");
             scanf(" %d", &escolha);
             switch (escolha) {
-                case 1: integral = controleRegraTrapezio(pontos, quantPontos, funcao);
+                case 1: printf("Usando x0 = %.6lf e x%d = %.6lf. \n", pontos[0], quantPontos-1, pontos[quantPontos-1]);
+                    integral = regraTrapezio(pontos, quantPontos, funcao);
                     break;
                 case 2: integral = controleTrapezioRepetido(pontos, quantPontos, funcao);
                     break;
-                case 3: 1;
+                case 3: integral = controlePrimeiraSimpson(pontos, quantPontos, funcao);
                     break;
-                case 4: 2;
+                case 4: integral = controlePrimeiraSimpsonRepetida(pontos, quantPontos, funcao);
                     break;
                 default: printf("Opcao invalida.\n");
                     break;
             }
         } while(escolha != 1 && escolha != 2 && escolha != 3 && escolha != 4);
+        printf("A integral numerica e: %.12lf \n", integral);
     }
     else 
         printf("Nao foi possivel fazer a leitura dos valores, compile novamente o programa.\n");
