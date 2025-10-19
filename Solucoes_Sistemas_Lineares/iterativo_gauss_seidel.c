@@ -48,6 +48,10 @@ void metodoGaussSeidel(double **C, double *g, double *Xk, int n, double epsilon,
 
     } while(maximoEmModulo(dif, n)/maximoEmModulo(Xk, n) > epsilon && k < nMax);          //Erro = ||X(k+1)-X(k)||_inf / ||X(k+1)||_inf > epsilon && ...
     if(k == nMax) printf("Numero de tentativas estourado, aproximacao sem conformacao com erro.\n");
+     else{
+        printf("Resolucao aproximada encontrada em %d iteracoes: \nX(%d) = [", k, k);
+        impressaoVetor(Xk, n);
+    }
     free(dif);
 }
 

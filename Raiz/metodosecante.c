@@ -12,8 +12,8 @@ double MetodoSecante(double (*func)(double), double x0, double x1, double epsilo
         xAtual = xProx;
         fxAtual = fxProx;
         xProx = xAtual - (fxAtual*(xAtual-xAnt)/(fxAtual-fxAnt));
+        printf("%d: x = %.12lf, f(x) = %.12lf\n", n, xProx, fxProx);
         n++;
-        printf("%d: x = %.16lf, f(x) = %.16lf", n, xProx, fxProx);
     }
     printf("Apos %d interacoes, a solucao encontrada e f(%.16lf) = %.16lf \n", n, xProx, fxProx);
     return xProx;

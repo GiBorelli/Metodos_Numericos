@@ -86,7 +86,7 @@ int limpezaValoresRepetidos(double **pontos, int n){
 void leituraPontosArq(double **pontos, int n, FILE *arq){
     char *linha = (char *) malloc(256 * sizeof(char));
     int i = 0, res;
-    printf("Valores lidos: \n");
+    //printf("Valores lidos: \n");
     while (i < n && fgets(linha, 256, arq) != NULL){
         size_t len = strlen(linha);
         while (len > 0 && (linha[len-1] == '\n' || linha[len-1] == '\r')) {
@@ -138,10 +138,9 @@ double **controleLeituraArquivo(int *quantPontos){
         printf("Erro na abertura do arquivo. \n");
         return NULL;
     }
-    printf("Pegando a quantidade de valores para leitura da primeira linha do arquivo.\n");
     if(fgets(nome_arq, 256, arq) != NULL){
         if(sscanf(nome_arq, "%d", quantPontos) == 1){
-           printf("Quantidade de pontos inicial: %d \n", *quantPontos);
+           printf("Pegando a quantidade de valores para leitura da primeira linha do arquivo: %d \n", *quantPontos);
         }
         else{
             printf("Primeira linha com valor nao valido para processamento.\n");

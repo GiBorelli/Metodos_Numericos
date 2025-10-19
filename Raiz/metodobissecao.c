@@ -23,7 +23,7 @@ void MetodoBissecao(double (*func)(double), double a, double b, double epsilon, 
         }
         i++;
     }
-    printf("O ponto medio e solucao: f(pm) = f(%.10lf) = %.10lf\n", pm, funcPM);
+    printf("Ponto medio na %d interacao que e solucao: f(pm) = f(%.10lf) = %.10lf\n", i, pm, funcPM);
 }
 
 void controleBissecao(){
@@ -33,13 +33,17 @@ void controleBissecao(){
     printf("Digite o erro maximo do calculo: ");
     scanf(" %lf", &epsilon);
     double (*funcao) (double x) = raizCubica;
+    int n;
 
     if(teoremaDeBolzano(funcao, a, b) == 1){
         printf("Existe zero no intervalo [%.6lf, %.6lf] da funcao.\n", a, b);
-        int n = quantMetodoBissecao(a, b, epsilon);
+        n = quantMetodoBissecao(a, b, epsilon);
         printf("Sao necessarias %d interacoes para aproximar-se do zero (raiz) da funcao.\n", n);
-        MetodoBissecao(funcao, a, b, epsilon, n);
     }
-    else
+    else{
         printf("Nao se pode informar se existe ou nao zero no intervalo [%.4lf, %.4lf] da funcao.\n", a, b);
+        printf("Digite um numero maximo de interacoes: ");
+        scanf(" %d", &n);
+    }
+    MetodoBissecao(funcao, a, b, epsilon, n);
 }

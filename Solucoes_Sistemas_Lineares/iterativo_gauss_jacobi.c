@@ -46,7 +46,7 @@ void metodoGaussJacobi(double **C, double *g, double *X, int n, double epsilon, 
         }
         k++;
 
-        printf("X = [");
+        printf("X(%d) = [", k);
         for(i = 0; i < n-1; i++){
             printf("%.5lf  ", X[i]);
         }
@@ -54,6 +54,10 @@ void metodoGaussJacobi(double **C, double *g, double *X, int n, double epsilon, 
 
     } while(maximoEmModulo(dif, n)/maximoEmModulo(X, n) > epsilon && k < nMax);     //Erro = ||X(k+1)-X(k)||_inf / ||X(k+1)||_inf > epsilon && ...
     if(k == nMax) printf("Numero de tentativas estourado, aproximacao sem conformidade com o erro.\n");
+    else{
+        printf("Resolucao aproximada encontrada em %d iteracoes: \nX(%d) = [", k, k);
+        impressaoVetor(X, n);
+    }
     free(dif);
 }
 

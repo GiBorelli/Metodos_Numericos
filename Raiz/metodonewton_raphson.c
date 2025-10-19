@@ -3,14 +3,15 @@
 #include "metodonewton_raphson.h"
 
 //Funcao que utiliza a definicao de derivada de uma funcao para calculo, por padrao h = 0.001
-double MetodoNewtonRaphsonAproximado(double (*func)(double), double (*df) (double (*func)(double), double), double x0, double epsilon){
+void MetodoNewtonRaphsonAproximado(double (*func)(double), double (*df) (double (*func)(double), double), double x0, double epsilon){
     int n = 1;
     double xAtual = x0, fxAtual = func(xAtual), fxProx;
     double xProx = xAtual - (fxAtual/df(func, xAtual));
     while(modulo(fxProx = func(xProx)) > epsilon && modulo(xProx - xAtual) > epsilon){
         xAtual = xProx;
         fxAtual = fxProx;
-        if(df(func, xAtual) != 0){
+        if(df(func, xAtual) != 0.0){
+            printf("%d: x = %.12lf, f(x) = %.12lf\n", n, xProx, fxProx);
             xProx = xAtual - (fxAtual/df(func, xAtual));
         }
         else{
@@ -19,12 +20,11 @@ double MetodoNewtonRaphsonAproximado(double (*func)(double), double (*df) (doubl
         }
         n++;
     }
-    printf("Apos %d interacoes, a solucao aproximada e f(%.8lf) = %.16lf \n", n, xProx, fxProx);
-    return xProx;
+    printf("Apos %d interacoes, a solucao aproximada e f(%.16lf) = %.16lf \n", n, xProx, fxProx);
 }
 
 //Funcao que recebe a derivada da funcao para o calculo
-double MetodoNewtonRaphson(double (*func)(double), double (*df) (double), double x0, double epsilon){
+void MetodoNewtonRaphson(double (*func)(double), double (*df) (double), double x0, double epsilon){
     int n = 1;
     double xAtual = x0, fxAtual = func(xAtual), fxProx;
     double xProx = xAtual - (fxAtual/df(xAtual));
@@ -32,6 +32,7 @@ double MetodoNewtonRaphson(double (*func)(double), double (*df) (double), double
         xAtual = xProx;
         fxAtual = fxProx;
         if(df(xAtual) != 0){
+            printf("%d: x = %.12lf, f(x) = %.12lf\n", n, xProx, fxProx);
             xProx = xAtual - (fxAtual/df(xAtual));
         }
         else{
@@ -41,7 +42,6 @@ double MetodoNewtonRaphson(double (*func)(double), double (*df) (double), double
         n++;
     }
     printf("Apos %d interacoes, a solucao encontrada e f(%.8lf) = %.16lf \n", n, xProx, fxProx);
-    return xProx;
 }
 
 void controleNewtonRaphson(){
@@ -53,7 +53,7 @@ void controleNewtonRaphson(){
     double (*funcao) (double x) = XquadradoMenosDois;
     double (*derivada) (double x) = doisX;
     
-    double r = MetodoNewtonRaphson(funcao, derivada, x0, epsilon);
-    double r2 = MetodoNewtonRaphsonAproximado(funcao, derivadaDefinicao, x0, epsilon);
-
+    MetodoNewtonRaphson(funcao, derivada, x0, epsilon);
+    printf("\n");
+    MetodoNewtonRaphsonAproximado(funcao, derivadaDefinicao, x0, epsilon);
 }

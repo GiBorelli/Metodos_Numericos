@@ -23,7 +23,7 @@ void MetodoFalsaPosicao(double (*func)(double), double a, double b, double epsil
             funcA = funcX;
         }
     }
-    printf("Apos %d interacoes, a solucao encontrada e f(%.4lf) = %.4lf \n", n, x, funcX);
+    printf("Apos %d interacoes, a solucao encontrada e f(%.12lf) = %.12lf \n", n, x, funcX);
 }
 
 void controleFalsaPosicao(){

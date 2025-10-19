@@ -59,7 +59,7 @@ double controlePrimeiraSimpsonRepetida(double *pontos, int n, double (*f)(double
         printf("Digite um numero par de divisoes: ");
         scanf("%d", &n);
         double tres_pontos[2], h = (pontos[ult]-pontos[0])/n;
-        printf("n = %d, h = %.6lf \n", n, h);
+        //printf("n = %d, h = %.6lf \n", n, h);
         for(int i = 0; i <= n-2; i+=2){
             tres_pontos[0] = pontos[0] + h*i;
             tres_pontos[1] = pontos[0] + h*(i+1);
